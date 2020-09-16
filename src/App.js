@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from 'react'
+import Cakes from './Cakes'
+
+const allCakesDetail = 'All cakes are free'
+
+export const CakeContext = createContext()
 
 function App() {
+  const [detail, setDetail] = useState(allCakesDetail)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <CakeContext.Provider value={detail}>
+      <div style={{ padding: '10px' }}>
+        <h1>Star wars cakes!!</h1>
+        <button
+          type="button"
+          onClick={() => setDetail('Now cakes cost a lot of money')}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          change detail
+        </button>
+        <Cakes />
+      </div>
+    </CakeContext.Provider>
+  )
 }
 
-export default App;
+export default App
